@@ -1,0 +1,19 @@
+﻿<Window x:Class="Andrusenko_Lab01_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Andrusenko_Lab01_WPF"
+        mc:Ignorable="d"
+        Title="AgeCounter" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Enter your birth date here:" HorizontalAlignment="Left" Margin="83,24,0,0" VerticalAlignment="Top" Height="62" Width="287" FontSize="20" BorderThickness="1,1,1,0"/>
+        <DatePicker Name ="ageDatePicker" HorizontalAlignment="Left" Margin="91,70,0,0" VerticalAlignment="Top" SelectedDateChanged="AgeDatePicker_SelectedDateChanged"/>
+        <TextBlock Name="ageTextBlock" HorizontalAlignment="Left" Margin="91,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="406"/>
+        <TextBlock Name="wAstroSignTextBlock" HorizontalAlignment="Left" Margin="91,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="418" FontSize="22"/>
+        <TextBlock Name="cAstroSignTextBlock" HorizontalAlignment="Left" Margin="91,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="317"/>
+    </Grid>
+</Window>
