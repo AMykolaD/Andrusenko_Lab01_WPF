@@ -19,34 +19,32 @@ namespace Andrusenko_Lab01_WPF
 
         private void AgeDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            //int age = now.Year - birthDate.Year;
-
-           // if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day))
-            //    age--;
-            int yearDifference;
-            if (ageDatePicker.SelectedDate != null)
-                yearDifference = DateTime.Now.Year - ((DateTime)ageDatePicker.SelectedDate).Year;
-            else throw new Exception();
             ageTextBlock.Text = "";
             wAstroSignTextBlock.Text = "";
             cAstroSignTextBlock.Text = "";
+            int yearDifference;
+            if (ageDatePicker.SelectedDate == null)
+                return;
+            else yearDifference = DateTime.Now.Year - ((DateTime)ageDatePicker.SelectedDate).Year;
             if (DateTime.Now.Month < ((DateTime)ageDatePicker.SelectedDate).Month ||
                 (DateTime.Now.Month == ((DateTime)ageDatePicker.SelectedDate).Month &&
                 DateTime.Now.Day < ((DateTime)ageDatePicker.SelectedDate).Day)) yearDifference--;
             if (yearDifference < 0)
             {
                 MessageBox.Show("Are you a timetraveller? \nYou can't be born in the future. \nDate is probably incorrect.", "Something's wrong");
+                ageDatePicker.SelectedDate = null;
             }
             else
             {
                 if(yearDifference > 135) {
                     MessageBox.Show("You can't be that old! \nDate is probably incorrect.", "Something's wrong");
+                    ageDatePicker.SelectedDate = null;
                 }
                 else {
-                    string wText = "";
-                    ageTextBlock.Text = "Your age is " + yearDifference.ToString();
                     if (DateTime.Now.Month == ((DateTime)ageDatePicker.SelectedDate).Month &&
                     DateTime.Now.Day == ((DateTime)ageDatePicker.SelectedDate).Day) MessageBox.Show("Looks like you've got a birthday, congratulations!", "Congratulation");
+                    string wText = "";
+                    ageTextBlock.Text = "Your age is " + yearDifference.ToString();
                     switch (((DateTime)ageDatePicker.SelectedDate).Month){
                         case 1: wText = ((DateTime)ageDatePicker.SelectedDate).Day < 20 ? "The Goat" : "The Water-bearer";
                             break;
@@ -86,7 +84,7 @@ namespace Andrusenko_Lab01_WPF
                         default: break;
                     }
                     wAstroSignTextBlock.Text = "Western zodiac: " + wText;
-
+                    if (((DateTime)ageDatePicker.SelectedDate).Year < 1901 || ((DateTime)ageDatePicker.SelectedDate).Year > 2100) return;
                     string cText = "";
                     DateTime chineseNewYearDate = new ChineseLunisolarCalendar().ToDateTime(((DateTime)ageDatePicker.SelectedDate).Year, 1, 1, 0, 0, 0, 0);
                     wAstroSignTextBlock.Text += " ";
