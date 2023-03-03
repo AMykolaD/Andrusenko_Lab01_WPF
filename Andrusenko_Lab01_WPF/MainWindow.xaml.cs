@@ -33,12 +33,14 @@ namespace Andrusenko_Lab01_WPF
             {
                 MessageBox.Show("Are you a timetraveller? \nYou can't be born in the future. \nDate is probably incorrect.", "Something's wrong");
                 ageDatePicker.SelectedDate = null;
+                return;
             }
             else
             {
                 if(yearDifference > 135) {
                     MessageBox.Show("You can't be that old! \nDate is probably incorrect.", "Something's wrong");
                     ageDatePicker.SelectedDate = null;
+                    return;
                 }
                 else {
                     if (DateTime.Now.Month == ((DateTime)ageDatePicker.SelectedDate).Month &&
